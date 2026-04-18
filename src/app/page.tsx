@@ -169,7 +169,7 @@ export default function App() {
           <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">About Me</h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="relative rounded-2xl w-full h-72 md:h-116 overflow-hidden shadow-xl">
-              <Image src="/about-me.jpeg" alt="Profile Image" loading="eager" fill className="object-cover"/>
+              <Image src="/about-me.jpeg" alt="Profile Image" fill className="object-cover"/>
             </div>
             <div className="space-y-4 text-gray-600 text-sm md:text-base text-justify">
                <p>
