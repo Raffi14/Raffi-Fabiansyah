@@ -106,7 +106,7 @@ const contactInfo = [
   },
   {
     name: "LinkedIn",
-    url: "https://www.linkedin.com/in/raffifabiansyah/",
+    url: "https://www.linkedin.com/in/raffi-fabiansyah",
     icon: <InIcon size={32} className="text-white" />,
     username: "raffi-fabiansyah"
   }
@@ -189,7 +189,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section id="Portfolio" className="min-h-screen py-20 px-4 bg-white">
+      <section id="Portfolio" className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">Portfolio</h2>
           <div className="flex flex-wrap gap-6 items-center justify-center md:justify-between">
@@ -218,7 +218,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section id="Skills" className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white">
+      <section id="Skills" className="min-h-screen py-20 px-4 bg-linear-to-b from-white to-sky-50">
         <div className="max-w-4xl mx-auto">
           <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">Skills</h2>
           <div className="space-y-8">
@@ -241,7 +241,7 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section id="Contact" className="min-h-screen py-20 px-4 bg-linear-to-b from-white to-sky-50">
+      <section id="Contact" className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white">
         <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">Contact</h2>
             <p className="text-gray-600 text-sm md:text-lg mb-8">Feel free to reach out to me for any inquiries, collaborations, or just to say hi!</p>
