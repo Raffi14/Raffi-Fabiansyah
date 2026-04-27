@@ -122,43 +122,56 @@ const item: {
   urlGithub: string;
   urlLive: string;
   image: string;
+  category: string;
+  tags: string[];
 }[] = [
   {
     name: "mentalytics AI",
-    description: "Mentalytics AI is an AI-powered platform that analyzes adolescent mental health and social media usage data through an interactive chat interface. Users can ask natural language questions and receive data-driven insights based on a pre-integrated dataset.",
+    description: "Mentalytics AI is an AI-powered platform that analyzes adolescent mental health and social media usage data through an interactive chat interface.",
     urlGithub: "https://github.com/Raffi14/Mentalytics-AI-Workflow.git",
     urlLive: "https://mentalytics-ai-workflow.vercel.app/",
-    image: "/Mentalytics.png"
+    image: "/Mentalytics.png",
+    category: "AI-Powered Web App",
+    tags: ["Next.js", "Langflow", "Tailwind CSS", "TypeScript"],
   },
   {
     name: "careerLens",
     description: "A web application that intelligently matches your CV with relevant job vacancies using cutting-edge AI technology.",
     urlGithub: "https://github.com/Raffi14/careerLens",
     urlLive: "https://career-lens-one.vercel.app/",
-    image: "/career_lens.png"
+    image: "/career_lens.png",
+    category: "AI-Powered Web App",
+    tags: ["Next.js", "Tailwind CSS", "Grok API", "TypeScript", "gpt-oss-20b", "next-safe-action", "zod"],
   },
   {
     name: "ATS",
     description: "A work-in-progress attendance system featuring a React Native mobile app and a Next.js admin dashboard for attendance management.",
     urlGithub: "https://github.com/Raffi14/ats-admin",
     urlLive: "",
-    image: "/ATS-Admin.png"
+    image: "/ATS-Admin.png",
+    category: "Full-Stack App",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "Cloudflare", "drizzle", "zod", "next-safe-action", "React Native", "Expo"],
   },
   {
     name: "SwiftPOS",
-    description: "A full-stack Point of Sale (POS) system built using Next.js, handling both frontend and backend development for managing transactions, products, and reports.",
+    description: "A full-stack Point of Sale (POS) system built using Next.js, handling both frontend and backend development.",
     urlGithub: "https://github.com/Raffi14/POS-System",
     urlLive: "",
-    image: "/POS.png"
+    image: "/POS.png",
+    category: "Full-Stack App",
+    tags: ["Next.js", "Tailwind CSS", "TypeScript", "PostgreSQL", "drizzle", "zod"],
   },
   {
     name: "aeroLearn",
-    description: "End-to-end Learning Management System (LMS) with Flutter mobile app and Fastify backend, integrated with a pre-existing Laravel admin panel.",
+    description: "End-to-end Learning Management System (LMS) with Flutter mobile app and Fastify backend.",
     urlGithub: "https://github.com/Megane-Team/aerolearn_app",
     urlLive: "",
-    image: "/E-Learning.png"
+    image: "/E-Learning.png",
+    category: "Full-Stack App",
+    tags: ["Flutter", "Fastify", "PostgreSQL", "TypeScript", "drizzle", "zod", "Firebase"],
   },
 ]
+
 export default function App() {
   return (
     <div className="min-h-screen bg-white">
@@ -199,32 +212,134 @@ export default function App() {
           </div>
         </div>
       </section>
-      <section id="Portfolio" className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">Portfolio</h2>
-          <div className="flex flex-wrap gap-6 items-center justify-center md:justify-between">
-            {item.map((item) => (
-              <div key={item.name} className="group relative overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 flex-1 min-w-70 max-w-87.5">
-                <div className="relative h-64 overflow-hidden">
-                  <Image src={item.image} alt={item.name} fill className="object-cover"/>
-                  <div className="absolute inset-0 bg-linear-to-t from-sky-900/90 via-sky-900/50 to-transparent opacity-80 group-hover:opacity-90 transition-opacity"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-lg font-semibold mb-2">{item.name}</h3>
-                    <p className="text-sm text-sky-100 mb-4">{item.description}</p>
-                    <div className="flex gap-3">
-                      <a href={item.urlGithub} target="_blank" className="flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg transition-colors text-sm">
-                        <GithubIcon className="inline mr-2" />
-                        GitHub
-                      </a>
-                      <a href={item.urlLive} target="_blank" className="flex items-center gap-2 px-4 py-2 bg-white/20 hover:bg-white/30 backdrop-blur-sm rounded-lg transition-colors text-sm">
-                        <ExternalLink className="inline mr-2" />
-                        Website
-                      </a>
+      <section
+        id="Portfolio"
+        className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white"
+      >
+        <div className="max-w-4xl mx-auto">
+          <h2 className="text-2xl md:text-4xl text-center mb-16 text-gray-800 font-semibold">
+            Portfolio
+          </h2>
+
+          <div className="relative">
+            {/* Vertical center line — desktop: center, mobile: left rail */}
+            <div
+              className="
+                absolute top-0 bottom-0 w-0.5
+                bg-linear-to-b from-transparent via-blue-400 to-transparent
+                left-1/2 -translate-x-1/2
+                sm:left-1/2 sm:-translate-x-1/2
+                max-sm:left-2 max-sm:translate-x-0
+              "
+            />
+
+            <div className="flex flex-col gap-16">
+              {item.map((item, index) => {
+                const isOdd = index % 2 === 0;
+                return (
+                  <div
+                    key={item.name}
+                    className={`
+                      relative flex items-center
+                      ${isOdd ? "flex-row" : "flex-row-reverse"}
+                      max-sm:flex-col max-sm:pl-8
+                    `}
+                  >
+                    <div
+                      className="
+                        w-[calc(50%-48px)] max-sm:w-full
+                        rounded-2xl overflow-hidden bg-white
+                        shadow-md hover:shadow-xl
+                        transition-all duration-300 hover:-translate-y-1.5
+                      "
+                    >
+                      <div className="relative h-44 overflow-hidden">
+                        <Image
+                          src={item.image}
+                          alt={item.name}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="p-5">
+                        <span
+                          className="
+                            inline-block text-[10px] font-semibold tracking-widest uppercase
+                            text-blue-500 bg-blue-50 px-3 py-1 rounded-full mb-2
+                          "
+                        >
+                          {item.category}
+                        </span>
+                        <h3 className="text-lg font-semibold text-slate-800 mb-1">
+                          {item.name}
+                        </h3>
+                        <p className="text-sm text-slate-500 leading-relaxed mb-4">
+                          {item.description}
+                        </p>
+                        <div className="flex flex-wrap gap-1.5 mb-4">
+                          {item.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="
+                                text-[11px] font-medium px-2.5 py-1 rounded-md
+                                bg-slate-100 text-slate-600 border border-slate-200
+                                hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200
+                                transition-colors cursor-default
+                              "
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                        <div className="flex gap-2">                         
+                          <a
+                            href={item.urlGithub}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="
+                              flex items-center gap-1.5 px-3.5 py-2 rounded-xl
+                              text-xs font-medium bg-slate-900 text-white
+                              hover:bg-slate-700 transition-colors
+                            "
+                          >
+                            <GithubIcon size={13} />
+                            GitHub
+                          </a>
+                          <a
+                            href={item.urlLive}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-medium bg-blue-50 text-blue-600 border border-blue-200 hover:bg-blue-100 transition-color"
+                          >
+                            <ExternalLink size={12} />
+                            Live
+                          </a>
+                        </div>
+                      </div>
                     </div>
+                    <div
+                      className={`
+                        absolute top-1/2 -translate-y-1/2 h-0.5
+                        bg-linear-to-r from-blue-200 to-blue-100
+                        w-[calc(50%-57px)] max-sm:hidden
+                        ${isOdd ? "left-[calc(50%-48px)]" : "right-[calc(50%-48px)]"}
+                      `}
+                    />
+                    <div
+                      className="
+                        absolute z-10
+                        w-4 h-4 rounded-full bg-white border-2 border-blue-400
+                        shadow-[0_0_0_5px_rgba(59,130,246,0.12)]
+                        transition-all duration-300
+                        left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2
+                        max-sm:left-0 max-sm:translate-x-0 max-sm:top-6 max-sm:translate-y-0
+                      "
+                    />
+                    <div className="w-[calc(50%-48px)] max-sm:hidden" />
                   </div>
-                </div>
-              </div>
-            ))}
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
