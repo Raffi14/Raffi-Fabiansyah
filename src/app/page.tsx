@@ -3,6 +3,9 @@ import { Navbar } from "@/components/ui/navbar";
 import Image from "next/image";
 import { Mail, Menu, X, ExternalLink } from "lucide-react";
 import { useEffect, useState } from "react";
+import { Parallax } from "react-scroll-parallax";
+import { motion } from "framer-motion";
+import { fadeIn } from "@/lib/animation";
 
 const GithubIcon = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
   <svg
@@ -213,7 +216,7 @@ export default function App() {
   };
 }, [selectedCert]);
   return (
-    <div className="min-h-screen bg-white no-scrollbar">
+    <div className="min-h-screen bg-white no-scrollbar overflow-hidden">
       <Navbar />
       <section id="Home" className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
@@ -222,32 +225,38 @@ export default function App() {
         </div>
         </div>
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-3xl font-bold md:text-5xl md:mb-4">Hi, Raffi is here!</h1>
-          <p className="text-lg md:text-3xl text-sky-100">Full-Stack Developer & Data Analyst</p>
+          <Parallax speed={-10}>
+            <h1 className="text-3xl font-bold md:text-5xl md:mb-4">Hi, Raffi is here!</h1>
+            <p className="text-lg md:text-3xl text-sky-100">Full-Stack Developer & Data Analyst</p>
+          </Parallax>
         </div>
       </section>
       <section id="About" className="min-h-screen py-20 px-4 bg-linear-to-b from-white to-sky-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">About Me</h2>
+          <motion.h2 variants={fadeIn("up")} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }} className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">About Me</motion.h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="relative rounded-2xl w-full h-72 md:h-116 overflow-hidden shadow-xl">
-              <Image src="/About-me.jpeg" alt="Profile Image" fill className="object-cover"/>
-            </div>
-            <div className="space-y-4 text-gray-600 text-sm md:text-base text-justify">
-               <p>
-                Im a passionate developer and designer who loves creating beautiful, 
-                functional web experiences. Just like the calm and creativity of the ocean, 
-                I bring tranquility and innovation to every project.
-              </p>
-              <p>
-                With a background in full-stack development and UI/UX design, I specialize 
-                in turning complex problems into simple, elegant solutions. When Im not 
-                coding, youll find me at the beach, drawing inspiration from nature.
-              </p>
-              <p>
-                I believe in clean code, thoughtful design, and the power of collaboration to create something truly special. For me, good development is not just about solving problems, but also about creating meaningful and enjoyable user experiences.
-              </p>
-            </div>
+            <motion.div variants={fadeIn("left")} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }}>
+              <div className="relative rounded-2xl w-full h-72 md:h-116 overflow-hidden shadow-xl">
+                <Image src="/About-me.jpeg" alt="Profile Image" fill className="object-cover"/>
+              </div>
+            </motion.div>
+            <motion.div variants={fadeIn("right")} initial="hidden" whileInView="show" viewport={{ once: false, amount: 0.3 }}>
+              <div className="space-y-4 text-gray-600 text-sm md:text-base text-justify">
+                <p>
+                  Im a passionate developer and designer who loves creating beautiful, 
+                  functional web experiences. Just like the calm and creativity of the ocean, 
+                  I bring tranquility and innovation to every project.
+                </p>
+                <p>
+                  With a background in full-stack development and UI/UX design, I specialize 
+                  in turning complex problems into simple, elegant solutions. When Im not 
+                  coding, youll find me at the beach, drawing inspiration from nature.
+                </p>
+                <p>
+                  I believe in clean code, thoughtful design, and the power of collaboration to create something truly special. For me, good development is not just about solving problems, but also about creating meaningful and enjoyable user experiences.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -256,9 +265,15 @@ export default function App() {
         className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white"
       >
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-4xl text-center mb-16 text-gray-800 font-semibold">
+          <motion.h2 
+            className="text-2xl md:text-4xl text-center mb-16 text-gray-800 font-semibold"
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+            variants={fadeIn("up")}
+          >
             Portfolio
-          </h2>
+          </motion.h2>
 
           <div className="relative">
             <div
@@ -275,13 +290,17 @@ export default function App() {
               {item.map((item, index) => {
                 const isOdd = index % 2 === 0;
                 return (
-                  <div
+                  <motion.div
                     key={item.name}
                     className={`
                       relative flex items-center
                       ${isOdd ? "flex-row" : "flex-row-reverse"}
                       max-sm:flex-col max-sm:pl-8
                     `}
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }}
+                    variants={isOdd ? fadeIn("left") : fadeIn("right")}
                   >
                     <div
                       className="
@@ -374,7 +393,7 @@ export default function App() {
                       "
                     />
                     <div className="w-[calc(50%-48px)] max-sm:hidden" />
-                  </div>
+                  </motion.div>
                 );
               })}
             </div>
@@ -383,24 +402,62 @@ export default function App() {
       </section>
       <section id="Skills" className="min-h-screen py-20 px-4 bg-linear-to-b from-white to-sky-50">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">Skills</h2>
+          <motion.h2 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+            variants={fadeIn("up")}
+            className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold"
+          >
+            Skills
+          </motion.h2>
           <div className="space-y-8">
-            <div className="bg-white rounded-xl shadow-md p-8">
+            <motion.div 
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={fadeIn("right")}
+              className="bg-white rounded-xl shadow-md p-8"
+            >
               <h3 className="text-gray-800 mb-6 text-xl font-semibold">Hard Skills</h3>
               <div className="flex flex-wrap gap-3">
                 {hardSkills.map((skill) => (
-                  <span key={skill} className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm">{skill}</span>
+                  <motion.span
+                    key={skill}
+                    className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm"
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }}
+                    variants={fadeIn("up")}
+                  >
+                    {skill}
+                  </motion.span>
                 ))}
               </div>
-            </div>
-            <div className="bg-white rounded-xl shadow-md p-8">
+            </motion.div>
+            <motion.div 
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={fadeIn("left")}
+              className="bg-white rounded-xl shadow-md p-8"
+            >
               <h3 className="text-gray-800 mb-6 text-xl font-semibold">Software & Tools</h3>
               <div className="flex flex-wrap gap-3">
                 {softWare.map((skill) => (
-                  <span key={skill} className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm">{skill}</span>
+                  <motion.span
+                    key={skill}
+                    className="px-4 py-2 bg-sky-100 text-sky-700 rounded-full text-sm"
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: false, amount: 0.3 }}
+                    variants={fadeIn("up")}
+                  >
+                    {skill}
+                  </motion.span>
                 ))}
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -413,12 +470,22 @@ export default function App() {
         }}
       >
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-2xl md:text-4xl text-center mb-24 text-gray-800 font-semibold">
+          <motion.h2 
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: false, amount: 0.3 }}
+            variants={fadeIn("up")}
+            className="text-2xl md:text-4xl text-center mb-24 text-gray-800 font-semibold"
+          >
             Certificates
-          </h2>
+          </motion.h2>
           <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
             {certificate.map((cert, index) => (
-              <div
+              <motion.div
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={fadeIn("up")}
                 key={index}
                 onClick={() => setSelectedCert(cert)}
                 className="break-inside-avoid mb-5 group rounded-2xl overflow-hidden cursor-pointer"
@@ -445,7 +512,7 @@ export default function App() {
                     (e.currentTarget as HTMLImageElement).style.transform = "";
                   }}
                 />
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -496,28 +563,58 @@ export default function App() {
         </div>
       )}
       <section id="Contact" className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white">
-        <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">Contact</h2>
-            <p className="text-gray-600 text-sm md:text-lg mb-8">Feel free to reach out to me for any inquiries, collaborations, or just to say hi!</p>
+        <div className="max-w-6xl mx-auto text-center">
+            <motion.h2 
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={fadeIn("up")}
+              className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold"
+            >
+              Contact
+            </motion.h2>
+            <motion.p 
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={fadeIn("up")}
+              className="text-gray-600 text-sm md:text-lg mb-8"
+            >
+              Feel free to reach out to me for any inquiries, collaborations, or just to say hi!
+            </motion.p>
             <div className="grid md:grid-cols-3 gap-8 mb-12">
               {
                 contactInfo.map((contact, index) => (
-                <a key={index} href={contact.url} className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow">
+                <motion.a 
+                  key={index} 
+                  href={contact.url} 
+                  className="flex flex-col items-center p-6 bg-white rounded-xl shadow-md hover:shadow-xl transition-shadow"
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: false, amount: 0.3 }}
+                  variants={fadeIn("up")}
+                >
                   <div className="w-16 h-16 bg-linear-to-br from-sky-400 to-blue-500 rounded-full flex items-center justify-center mb-4">
                     {contact.icon}
                   </div>
                     <h3 className="text-gray-800 mb-2">{contact.name}</h3>
                     <p className="text-sky-600">{contact.username}</p>
-                </a>
+                </motion.a>
                 ))
               }
             </div>
-            <div className="relative rounded-2xl overflow-hidden shadow-xl h-64">
+            <motion.div 
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={fadeIn("up")}
+              className="relative rounded-2xl overflow-hidden shadow-xl h-64"
+            >
               <Image src="/Background-image.jpeg" alt="Contact Image" fill className="object-cover"/>
               <div className="absolute inset-0 bg-linear-to-t from-sky-900/80 to-transparent flex items-center justify-center">
                 <p className="text-white text-xl">Let&apos;s create something amazing together</p>
             </div>
-            </div>
+            </motion.div>
         </div>
       </section>
       <footer className="bg-gray-900 py-8 px-4">
