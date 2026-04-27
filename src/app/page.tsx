@@ -1,6 +1,8 @@
+"use client"
 import { Navbar } from "@/components/ui/navbar";
 import Image from "next/image";
 import { Mail, Menu, X, ExternalLink } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const GithubIcon = ({ size = 24, className = "" }: { size?: number; className?: string }) => (
   <svg
@@ -172,9 +174,46 @@ const item: {
   },
 ]
 
+const certificate = (() => {
+  const certFiles = [
+    "AI Agent.png",
+    "AI Ethics.png",
+    "AI Literacy.png",
+    "Classfying.png",
+    "Dasar Data Science.png",
+    "Data Concepts.png",
+    "Exploring.png",
+    "Financial Literacy.png",
+    "Gen AI.png",
+    "Getting_Started.png",
+    "Interacting.png",
+    "Kiro.png",
+    "Python.png",
+    "SERTIFIKAT SOFTWARE ENGINEER.jpg",
+    "SQL.png",
+  ];
+  
+  return certFiles.map((file) => ({
+    name: file.replace(/\.(png|jpg|jpeg)$/, "").replace(/[-_]/g, " "),
+    image: `/cert/${file}`,
+  }));
+})();
+
 export default function App() {
+  const [selectedCert, setSelectedCert] = useState<{ name: string; image: string } | null>(null);
+  
+  useEffect(() => {
+  if (selectedCert) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "";
+  }
+  return () => {
+    document.body.style.overflow = "";
+  };
+}, [selectedCert]);
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white no-scrollbar">
       <Navbar />
       <section id="Home" className="relative h-screen flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0">
@@ -222,7 +261,6 @@ export default function App() {
           </h2>
 
           <div className="relative">
-            {/* Vertical center line — desktop: center, mobile: left rail */}
             <div
               className="
                 absolute top-0 bottom-0 w-0.5
@@ -366,6 +404,97 @@ export default function App() {
           </div>
         </div>
       </section>
+      <section
+        id="Certificates"
+        className="min-h-screen py-24 px-6"
+        style={{
+          background:
+            "linear-gradient(135deg, #f0f4ff 0%, #fafafa 50%, #f0f9ff 100%)",
+        }}
+      >
+        <div className="max-w-5xl mx-auto">
+          <h2 className="text-2xl md:text-4xl text-center mb-24 text-gray-800 font-semibold">
+            Certificates
+          </h2>
+          <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
+            {certificate.map((cert, index) => (
+              <div
+                key={index}
+                onClick={() => setSelectedCert(cert)}
+                className="break-inside-avoid mb-5 group rounded-2xl overflow-hidden cursor-pointer"
+                style={{
+                  boxShadow:
+                    "0 2px 8px rgba(99,102,241,0.08), 0 0 0 1px rgba(99,102,241,0.1)",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                }}
+              >
+                <Image
+                  src={cert.image}
+                  alt={cert.name}
+                  width={600}
+                  height={400}
+                  className="w-full h-auto block"
+                  style={{
+                    transition: "transform 0.4s ease",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.transform =
+                      "scale(1.03)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLImageElement).style.transform = "";
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      {selectedCert && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ background: "rgba(0,0,0,0.92)" }}
+          onClick={() => setSelectedCert(null)}
+        >
+          <div
+            className="relative flex items-center justify-center"
+            style={{ maxWidth: "90vw", maxHeight: "90vh" }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Image
+              src={selectedCert.image}
+              alt={selectedCert.name}
+              width={1200}
+              height={800}
+              className="object-contain"
+              unoptimized
+              style={{
+                maxWidth: "90vw",
+                maxHeight: "85vh",
+                width: "auto",
+                height: "auto",
+                borderRadius: "12px",
+                display: "block",
+              }}
+            />
+          </div>
+          <button
+            className="absolute top-4 right-4 text-white p-2 rounded-full transition-colors"
+            style={{ background: "rgba(255,255,255,0.15)" }}
+            onMouseEnter={(e) =>
+              ((e.currentTarget as HTMLButtonElement).style.background =
+                "rgba(255,255,255,0.3)")
+            }
+            onMouseLeave={(e) =>
+              ((e.currentTarget as HTMLButtonElement).style.background =
+                "rgba(255,255,255,0.15)")
+            }
+            onClick={() => setSelectedCert(null)}
+          >
+            <X size={24} />
+          </button>
+        </div>
+      )}
       <section id="Contact" className="min-h-screen py-20 px-4 bg-linear-to-b from-sky-50 to-white">
         <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-2xl md:text-4xl text-center mb-6 md:mb-12 text-gray-700 font-semibold">Contact</h2>

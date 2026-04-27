@@ -17,6 +17,9 @@ const item: { name: string }[] = [
         name: "Skills",
     },
     {
+        name: "Certificates",
+    },
+    {
         name: "Contact",
     }
 ]
@@ -26,20 +29,26 @@ export const Navbar = () => {
     const [activeTab, setActiveTab] = useState<string   >("Home");
 
     useEffect(() => {
-        const section = document.querySelectorAll("section");
-        const observer = new IntersectionObserver((entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    setActiveTab(entry.target.id);
+        const handleScroll = () => {
+            const sections = document.querySelectorAll("section");
+            let currentSection = "Home";
+            
+            sections.forEach((section) => {
+                const rect = section.getBoundingClientRect();
+                const sectionId = section.id;
+                if (rect.top <= 150) {
+                    currentSection = sectionId;
                 }
-            })
-        }), {
-            threshold: 0.5
-        });
+            });
+            
+            setActiveTab(currentSection);
+        };
 
-        section.forEach((section) => observer.observe(section));
-        return () => { observer.disconnect() };
-    }, [activeTab]);
+        window.addEventListener("scroll", handleScroll);
+        setTimeout(handleScroll, 100);
+        
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);    
         element?.scrollIntoView({ behavior: 'smooth' });
