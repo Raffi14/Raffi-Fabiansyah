@@ -69,6 +69,8 @@ const hardSkills = [
   'Firebase',
   'Cloudflare',
   'Vercel',
+  'AI Data Analysis',
+  'AI-Powered Web Development',
 ]
 
 const softWare = [
@@ -85,6 +87,7 @@ const softWare = [
   'Postman',
   'Notion',
   'Figma',
+  'Langflow',
   'Discord',
   'Google Sheets',
   'Google Docs',
@@ -120,6 +123,13 @@ const item: {
   urlLive: string;
   image: string;
 }[] = [
+  {
+    name: "mentalytics AI",
+    description: "Mentalytics AI is an AI-powered platform that analyzes adolescent mental health and social media usage data through an interactive chat interface. Users can ask natural language questions and receive data-driven insights based on a pre-integrated dataset.",
+    urlGithub: "https://github.com/Raffi14/Mentalytics-AI-Workflow.git",
+    urlLive: "https://mentalytics-ai-workflow.vercel.app/",
+    image: "/Mentalytics.png"
+  },
   {
     name: "careerLens",
     description: "A web application that intelligently matches your CV with relevant job vacancies using cutting-edge AI technology.",
