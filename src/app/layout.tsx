@@ -17,9 +17,59 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Muhammad Raffi Fabiansyah | Personal Website",
+  metadataBase: new URL("https://raffi-fabiansyah.vercel.app"),
+
+  title: {
+    default: "Muhammad Raffi Fabiansyah | Full-Stack Developer",
+    template: "%s | Muhammad Raffi Fabiansyah",
+  },
+
   description:
-    "Personal website and portfolio of Muhammad Raffi Fabiansyah. Explore my projects, skills, experience, and more.",
+    "Muhammad Raffi Fabiansyah is a Full-Stack Developer and Data Analyst specializing in Next.js, React, TypeScript, Python, and AI-powered web development.",
+
+  keywords: [
+    "Muhammad Raffi Fabiansyah",
+    "Raffi Fabiansyah",
+    "Full-Stack Developer",
+    "Data Analyst",
+    "Web Developer",
+    "Next.js Developer",
+    "React Developer",
+    "TypeScript Developer",
+    "Python Developer",
+    "AI Web Development",
+  ],
+
+  authors: [
+    {
+      name: "Muhammad Raffi Fabiansyah",
+    },
+  ],
+
+  creator: "Muhammad Raffi Fabiansyah",
+
+  alternates: {
+    canonical: "https://raffi-fabiansyah.vercel.app",
+  },
+
+  openGraph: {
+    type: "website",
+    url: "https://raffi-fabiansyah.vercel.app",
+    title: "Muhammad Raffi Fabiansyah | Full-Stack Developer",
+    description:
+      "Personal portfolio of Muhammad Raffi Fabiansyah, a Full-Stack Developer and Data Analyst.",
+    siteName: "Muhammad Raffi Fabiansyah",
+  },
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+
   verification: {
     google: "Z81vQSRrUn8YURifXH3FWJCsHg4HxuN_YZspZ6MiIRM",
   },
