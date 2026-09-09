@@ -226,7 +226,7 @@ export default function App() {
         </div>
         <div className="relative z-10 text-center text-white px-4">
           <Parallax speed={-20}>
-            <h1 className="text-3xl font-bold md:text-5xl md:mb-4">Hi, Raffi is here!</h1>
+            <h1 className="text-3xl font-bold md:text-5xl md:mb-4">Muhammad Raffi Fabiansyah</h1>
             <p className="text-lg md:text-3xl text-sky-100">Full-Stack Developer & Data Analyst</p>
           </Parallax>
         </div>
