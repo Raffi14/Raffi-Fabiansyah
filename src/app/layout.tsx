@@ -19,6 +19,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "My Website",
   description: "personal website of Muhammad Raffi Fabiansyah",
+  verification: {
+    google: "Z81vQSRrUn8YURifXH3FWJCsHg4HxuN_YZspZ6MiIRM",
+  },
 };
 
 export default function RootLayout({
